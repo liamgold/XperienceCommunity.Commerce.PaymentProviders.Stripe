@@ -3,14 +3,14 @@ name: Publish to NuGet
 on:
   release:
     types: [published]
-  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
 
     steps:
     - uses: actions/checkout@v4
@@ -18,19 +18,22 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: 8.0.x
 
     - name: Restore dependencies
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build src/XperienceCommunity.Commerce.PaymentProviders.Stripe/XperienceCommunity.Commerce.PaymentProviders.Stripe.csproj --configuration Release --no-restore
 
     - name: Pack
-      run: dotnet pack src/XperienceCommunity.Commerce.PaymentProviders.Stripe/XperienceCommunity.Commerce.PaymentProviders.Stripe.csproj --no-build --configuration Release --output ./nupkg
+      run: dotnet pack src/XperienceCommunity.Commerce.PaymentProviders.Stripe/XperienceCommunity.Commerce.PaymentProviders.Stripe.csproj --configuration Release --no-build --output nupkg
 
-    - name: Publish to NuGet
-      run: |
-        dotnet nuget push ./nupkg/*.nupkg \
-          --source https://api.nuget.org/v3/index.json \
-          --api-key ${{ secrets.NUGET_API_KEY }}
+    - name: NuGet login (OIDC)
+      uses: NuGet/login@v1
+      id: nuget_login
+      with:
+        user: liamgold
+
+    - name: Publish to NuGet using Trusted Publishing
+      run: dotnet nuget push nupkg/*.nupkg --api-key "${{ steps.nuget_login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
