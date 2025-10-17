@@ -22,8 +22,9 @@ This package provides a production-ready integration with Stripe's Hosted Checko
 
 ```bash
 dotnet add package XperienceCommunity.Commerce.PaymentProviders.Stripe
-dotnet add package XperienceCommunity.Commerce.PaymentProviders.Core
 ```
+
+The Core package (`XperienceCommunity.Commerce.PaymentProviders.Core`) is automatically included as a dependency.
 
 ## Quick Start
 
