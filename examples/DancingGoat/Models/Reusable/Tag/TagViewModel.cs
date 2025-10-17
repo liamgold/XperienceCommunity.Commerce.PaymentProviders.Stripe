@@ -10,13 +10,13 @@ namespace DancingGoat.Models
     {
         private const int ROOT_TAG_ID = 0;
 
-        public static TagViewModel GetViewModel(Tag tag, int level = 0)
+        public static TagViewModel GetViewModel(CMS.ContentEngine.Tag tag, int level = 0)
         {
             return new TagViewModel(tag.Title, level, tag.Identifier);
         }
 
 
-        public static List<TagViewModel> GetViewModels(IEnumerable<Tag> tags)
+        public static List<TagViewModel> GetViewModels(IEnumerable<CMS.ContentEngine.Tag> tags)
         {
             var result = new List<TagViewModel>();
             var tagsByParentId = tags.GroupBy(tag => tag.ParentID).ToDictionary(group => group.Key, group => group.ToList());
@@ -29,11 +29,11 @@ namespace DancingGoat.Models
             return result;
 
 
-            void GetTagsWithTagViewModels(IEnumerable<Tag> currentLevelTags, int level)
+            void GetTagsWithTagViewModels(IEnumerable<CMS.ContentEngine.Tag> currentLevelTags, int level)
             {
                 foreach (var tag in currentLevelTags.OrderBy(tag => tag.Order))
                 {
-                    var children = tagsByParentId.TryGetValue(tag.ID, out var childrenTags) ? childrenTags : Enumerable.Empty<Tag>();
+                    var children = tagsByParentId.TryGetValue(tag.ID, out var childrenTags) ? childrenTags : Enumerable.Empty<CMS.ContentEngine.Tag>();
                     result.Add(GetViewModel(tag, level));
                     GetTagsWithTagViewModels(children, level + 1);
                 }
