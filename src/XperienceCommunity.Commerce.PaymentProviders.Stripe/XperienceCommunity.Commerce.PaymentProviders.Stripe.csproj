@@ -1,23 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Package-specific metadata -->
+    <Title>Xperience Community Commerce Payment Providers - Stripe</Title>
+    <PackageId>XperienceCommunity.Commerce.PaymentProviders.Stripe</PackageId>
+    <Version>0.1.0-beta</Version>
+    <Description>Stripe Checkout integration for Xperience by Kentico commerce solutions. Provides hosted checkout session creation, webhook handling with signature verification, and payment state management using the Commerce Payment Providers Core abstractions.</Description>
+    <RepositoryUrl>https://github.com/liamgold/XperienceCommunity.Commerce.PaymentProviders.Stripe</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Stripe.net" Version="49.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.9" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.9" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\XperienceCommunity.Commerce.PaymentProviders.Core\src\XperienceCommunity.Commerce.PaymentProviders.Core\XperienceCommunity.Commerce.PaymentProviders.Core.csproj" />
+    <PackageReference Include="Stripe.net" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="XperienceCommunity.Commerce.PaymentProviders.Core" />
   </ItemGroup>
 
 </Project>

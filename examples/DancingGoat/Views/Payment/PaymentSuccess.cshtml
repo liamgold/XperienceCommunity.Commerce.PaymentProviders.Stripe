@@ -1,0 +1,11 @@
+@{
+    ViewBag.Title = HtmlLocalizer["Payment Successful"].Value;
+    ViewData["PageClass"] = "inverted";
+}
+
+<div class="container">
+    <h2>@HtmlLocalizer["Payment Successful"]</h2>
+    <p>@HtmlLocalizer[$"Thank you for your payment! Your order {ViewBag.OrderNumber} has been confirmed."]</p>
+    <p>@HtmlLocalizer["You will receive a confirmation email shortly."]</p>
+    <a href="/" class="btn btn-primary">@HtmlLocalizer["Continue Shopping"]</a>
+</div>

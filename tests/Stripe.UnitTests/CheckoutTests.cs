@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using XperienceCommunity.Commerce.PaymentProviders.Stripe;
 using Core = XperienceCommunity.Commerce.PaymentProviders.Core;
@@ -10,7 +11,8 @@ public class CheckoutTests
     {
         // Lightweight test to verify the gateway can be constructed
         var opts = Options.Create(new StripeOptions { ApiKey = "sk_test_dummy" });
-        var gateway = new StripeGateway(opts);
+        var logger = LoggerFactory.Create(builder => { }).CreateLogger<StripeGateway>();
+        var gateway = new StripeGateway(opts, logger);
 
         Assert.NotNull(gateway);
     }
@@ -20,7 +22,8 @@ public class CheckoutTests
     {
         // Verify method signature accepts OrderSnapshot
         var opts = Options.Create(new StripeOptions { ApiKey = "sk_test_dummy" });
-        var gateway = new StripeGateway(opts);
+        var logger = LoggerFactory.Create(builder => { }).CreateLogger<StripeGateway>();
+        var gateway = new StripeGateway(opts, logger);
 
         var order = new Core.OrderSnapshot(
             "TEST-001",

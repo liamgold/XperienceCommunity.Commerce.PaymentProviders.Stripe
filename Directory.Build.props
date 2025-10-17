@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<WarningsAsErrors>nullable</WarningsAsErrors>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn)</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Add solution-wide global usings -->
+		<!-- <Using Include="" /> -->
+	</ItemGroup>
+
+	<!-- Common package metadata for all projects -->
+	<PropertyGroup>
+		<Authors>Liam Goldfinch</Authors>
+		<Company>Liam Goldfinch</Company>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>kentico xperience commerce payment gateway stripe checkout webhooks</PackageTags>
+	</PropertyGroup>
+
+</Project>

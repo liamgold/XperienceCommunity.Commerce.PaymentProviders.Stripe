@@ -1,0 +1,12 @@
+@{
+    ViewBag.Title = HtmlLocalizer["Payment Cancelled"].Value;
+    ViewData["PageClass"] = "inverted";
+}
+
+<div class="container">
+    <h2>@HtmlLocalizer["Payment Cancelled"]</h2>
+    <p>@HtmlLocalizer[$"Your payment for order {ViewBag.OrderNumber} was cancelled."]</p>
+    <p>@HtmlLocalizer["If you experienced any issues, please contact our support team."]</p>
+    <a href="/" class="btn btn-primary">@HtmlLocalizer["Return to Home"]</a>
+    <a href="/checkout" class="btn btn-secondary">@HtmlLocalizer["Try Again"]</a>
+</div>

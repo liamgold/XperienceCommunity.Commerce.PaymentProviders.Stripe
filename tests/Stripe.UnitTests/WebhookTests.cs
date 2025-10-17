@@ -1,5 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using XperienceCommunity.Commerce.PaymentProviders.Stripe;
 using Xunit;
@@ -10,7 +11,8 @@ public class WebhookTests
     public async Task InvalidSignature_Returns_Unhandled()
     {
         var opts = Options.Create(new StripeOptions { ApiKey = "sk_test_x", WebhookSecret = "whsec_dummy" });
-        var gateway = new StripeGateway(opts);
+        var logger = LoggerFactory.Create(builder => { }).CreateLogger<StripeGateway>();
+        var gateway = new StripeGateway(opts, logger);
 
         var ctx = new DefaultHttpContext();
         var payload = "{}";

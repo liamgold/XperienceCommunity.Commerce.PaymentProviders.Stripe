@@ -6,6 +6,13 @@
 # dotenv files
 .env
 
+# Xperience by Kentico - protect secrets and local data
+**/appsettings.json
+**/appsettings.*.json
+!**/appsettings.Development.json.example
+**/App_Data/
+CMSConnectionString.config
+
 # User-specific files
 *.rsuser
 *.suo

@@ -17,6 +17,13 @@ namespace XperienceCommunity.Commerce.PaymentProviders.Stripe
             Action<StripeOptions> configure)
         {
             services.Configure(configure);
+
+            // Add validation for StripeOptions
+            services.AddOptions<StripeOptions>()
+                .Validate(opts => !string.IsNullOrWhiteSpace(opts.ApiKey),
+                    "Stripe API key must be configured. Set StripeOptions.ApiKey with your secret key.")
+                .ValidateOnStart();
+
             services.AddScoped<Core.IPaymentGateway, StripeGateway>();
             return services;
         }
