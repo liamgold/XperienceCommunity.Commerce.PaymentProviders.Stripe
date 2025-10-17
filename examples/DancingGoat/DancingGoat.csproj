@@ -5,6 +5,8 @@
     <UserSecretsId>79c858af-5444-4954-8d08-6592a961e82a</UserSecretsId>
     <SeparatedAdmin Condition="'$(SeparatedAdmin)' == ''">false</SeparatedAdmin>
     <NoWarn>$(NoWarn);KXE0004</NoWarn>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="App_Data\CMSModules\WebFarm\webfarm.sync" />
@@ -22,9 +24,7 @@
     <DefineConstants>$(DefineConstants);SEPARATED_ADMIN</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\XperienceCommunity.Commerce.PaymentProviders.Stripe\XperienceCommunity.Commerce.PaymentProviders.Stripe.csproj" />
-  </ItemGroup>
-  <ItemGroup>
+    <PackageReference Include="XperienceCommunity.Commerce.PaymentProviders.Stripe" Version="0.1.0-beta" />
     <PackageReference Include="kentico.xperience.admin" Version="30.10.3" Condition="'$(SeparatedAdmin)' == 'false'" />
     <PackageReference Include="kentico.xperience.azurestorage" Version="30.10.3" />
     <PackageReference Include="kentico.xperience.imageprocessing" Version="30.10.3" />
